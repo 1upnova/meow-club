@@ -2,12 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Lato";
+  src: local("Lato"), url(/fonts/Lato-Light.woff2) format("woff2");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Lato";
+  src: local("Lato"), url(/fonts/Lato-Regular.woff2) format("woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Lato";
+  src: local("Lato"), url(/fonts/Lato-Bold.woff2) format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "DMSans";
+  src: local("DMSans"), url(/fonts/DMSans-Regular.woff2) format("woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "DMSans";
+  src: local("DMSans"), url(/fonts/DMSans-Medium.woff2) format("woff2");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "DMSans";
+  src: local("DMSans"), url(/fonts/DMSans-Bold.woff2) format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: local("Ubuntu"), url(/fonts/UbuntuMono-Regular.woff2) format("woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Ubuntu";
+  src: local("Ubuntu"), url(/fonts/UbuntuMono-Bold.woff2) format("woff2");
+  font-weight: 700;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  cursor: none;
 }
 
 a {
@@ -17,4 +61,98 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.custom-cursor {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: transform 350ms;
+  transform: translate(-50%, -50%) scale(0.8);
+  z-index: 1000;
+}
+
+.custom-cursor--link {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.custom-cursor--video {
+  transform: translate(-50%, -50%) scale(3);
+  background-color: white;
+  mix-blend-mode: normal;
+}
+
+.PauseIcon,
+.PlayIcon {
+  color: inherit;
+  fill: currentColor;
+  height: 25%;
+  width: 25%;
+  stroke-width: 0px;
+}
+
+/*! locomotive-scroll v3.5.4 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+html.has-scroll-smooth {
+  overflow: hidden !important;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.has-scroll-smooth body {
+  overflow: hidden !important;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh;
+}
+
+.c-scrollbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 11px;
+  height: 100vh;
+  transform-origin: center right;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0;
+}
+.c-scrollbar:hover {
+  transform: scaleX(1.45);
+}
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+  opacity: 1;
+}
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgb(87, 87, 87);
+  opacity: 0.5;
+  width: 7px;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
 }
