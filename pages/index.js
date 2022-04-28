@@ -222,15 +222,78 @@ export default function Home() {
         <section
           data-scroll
           data-scroll-speed="0"
-          className="w-screen h-screen bg-white overflow-hidden flex flex-row items-start justify-center"
+          className="w-screen h-fit bg-white overflow-hidden flex flex-col p-16 items-center"
         >
-          <div className="w-full h-[50%] m-16 rounded-2xl overflow-hidden">
-            <div className="relative h-auto w-full aspect-[1447/691]">
-              <Image
-                className="h-full min-w-full"
-                src="/static/images/test1.png"
-                layout="fill"
-              />
+          <div className="w-full h-[50vh] rounded-2xl overflow-hidden relative flex flex-row items-center justify-end ">
+            <div className="w-[40%] z-[3] pr-32">
+              <span className="font-DMSans font-bold text-white text-4xl">
+                Nugget sucks on god.
+              </span>
+              <p className="font-DMSans font-normal text-white text-xl opacity-90">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                congue aliquam dignissim. Interdum et malesuada fames ac ante
+                ipsum primis in faucibus. Nullam suscipit, mauris eget ornare
+                bibendum, mi diam mattis ligula, nec eleifend nunc mauris at
+                massa. Vestibulum vitae massa eget ex sollicitudin sollicitudin.
+              </p>
+            </div>
+            <div className="absolute w-full h-full z-[2] bg-gradient-to-r from-transparent to-black"></div>
+            <div className="absolute w-full h-full top-[50%] translate-y-[-50%] z-[1]">
+              <div className="relative h-auto w-full aspect-[1447/691]">
+                <Image
+                  className="h-full min-w-full"
+                  src="/static/images/nether.jpg"
+                  layout="fill"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="w-full h-[50vh] m-16 rounded-2xl overflow-hidden relative flex flex-row items-center justify-start ">
+            <div className="w-[40%] z-[3] pl-32">
+              <span className="font-DMSans font-bold text-white text-4xl">
+                Nugget sucks on god.
+              </span>
+              <p className="font-DMSans font-normal text-white text-xl opacity-90">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                congue aliquam dignissim. Interdum et malesuada fames ac ante
+                ipsum primis in faucibus. Nullam suscipit, mauris eget ornare
+                bibendum, mi diam mattis ligula, nec eleifend nunc mauris at
+                massa. Vestibulum vitae massa eget ex sollicitudin sollicitudin.
+              </p>
+            </div>
+            <div className="absolute w-full h-full z-[2] bg-gradient-to-l from-transparent to-black"></div>
+            <div className="absolute w-full h-full top-[50%] translate-y-[-50%] z-[1]">
+              <div className="relative h-auto w-full aspect-[1447/691]">
+                <Image
+                  className="h-full min-w-full"
+                  src="/static/images/water.jpg"
+                  layout="fill"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="w-full h-[50vh] rounded-2xl overflow-hidden relative flex flex-row items-center justify-end ">
+            <div className="w-[40%] z-[3] pr-32">
+              <span className="font-DMSans font-bold text-white text-4xl">
+                Nugget sucks on god.
+              </span>
+              <p className="font-DMSans font-normal text-white text-xl opacity-90">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                congue aliquam dignissim. Interdum et malesuada fames ac ante
+                ipsum primis in faucibus. Nullam suscipit, mauris eget ornare
+                bibendum, mi diam mattis ligula, nec eleifend nunc mauris at
+                massa. Vestibulum vitae massa eget ex sollicitudin sollicitudin.
+              </p>
+            </div>
+            <div className="absolute w-full h-full z-[2] bg-gradient-to-r from-transparent to-black"></div>
+            <div className="absolute w-full h-full top-[50%] translate-y-[-50%] z-[1]">
+              <div className="relative h-auto w-full aspect-[1447/691]">
+                <Image
+                  className="h-full min-w-full"
+                  src="/static/images/jungle.png"
+                  layout="fill"
+                />
+              </div>
             </div>
           </div>
         </section>
