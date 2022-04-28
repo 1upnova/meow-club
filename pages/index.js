@@ -4,7 +4,21 @@ import { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
+
+const fadeIn = {
+  initial: {
+    opacity: 0,
+  },
+  inView: {
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+};
 
 export default function Home() {
   const [heroOption, SetHeroOption] = useState("preview");
@@ -13,13 +27,13 @@ export default function Home() {
     switch (heroOption) {
       case "preview":
         return (
-          <div className="w-full h-full">
-            <span className="font-DMSans text-[12rem] mix-blend-difference absolute text-white top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">
-              Play reel
+          <div className="w-full h-full z-[2]">
+            <span className="font-DMSans text-8xl text-center xl:text-[12rem] mix-blend-difference absolute text-white top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] pointer-events-none">
+              Play trailer
             </span>
             <video
               src="/static/videos/preview.mp4"
-              className="min-w-full"
+              className="min-h-full max-w-none preview-vid"
               muted
               playsInline
               autoPlay
@@ -29,11 +43,42 @@ export default function Home() {
         );
       case "trailer":
         return (
-          <video
+          <motion.video
+            initial="initial"
+            whileInView="inView"
+            variants={fadeIn}
             src="/static/videos/TrailerSourceFixed.mp4"
-            className="min-h-full max-w-none"
+            className="min-h-full max-w-none z-[2] trailer-vid"
             autoPlay
-          ></video>
+          ></motion.video>
+        );
+      case "blank":
+        return;
+    }
+  };
+
+  const CursorVideoChanger = () => {
+    switch (heroOption) {
+      case "preview":
+        return (
+          <svg viewBox="6 2 12 13.5" className="PlayIcon ml-[1px]">
+            <path d="M16.25 8.625L7.10317 2.52183V14.7282L16.25 8.625Z"></path>
+          </svg>
+        );
+      case "trailer":
+        return (
+          <svg
+            className="XIcon"
+            xmlns="http://www.w3.org/2000/svg"
+            fillRule="evenodd"
+            clipRule="evenodd"
+          >
+            <path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z" />
+          </svg>
+        );
+      case "blank":
+        return (
+          <span className="text-white font-DMSans text-[25%]">Loading</span>
         );
     }
   };
@@ -44,11 +89,10 @@ export default function Home() {
       locoScroll = new locomotiveModule.default({
         el: document.querySelector("[data-scroll-container]"),
         smooth: true,
-        smoothMobile: false,
+        smoothMobile: true,
         smartphone: {
-          smooth: false,
+          smooth: true,
         },
-        touchMultiplier: 3,
         reloadOnContextChange: true,
         direction: "vertical",
         speed: "1",
@@ -83,6 +127,8 @@ export default function Home() {
     var links = document.querySelectorAll("a");
     var test = document.querySelectorAll("video");
     var heroSection = document.querySelector(".meow-hero");
+    var trailerVid = document.querySelector(".trailer-vid");
+    var previewVid = document.querySelector(".preview-vid");
     var initCursor = false;
 
     for (var i = 0; i < links.length; i++) {
@@ -103,10 +149,6 @@ export default function Home() {
         cursor.classList.add("custom-cursor--video");
         cursorSVG.classList.add("hidden");
         cursorPlay.classList.remove("opacity-0");
-        heroSection.addEventListener("click", function () {
-          if (heroOption == "preview") SetHeroOption("trailer");
-          else if (heroOption == "trailer") SetHeroOption("preview");
-        });
       });
       selfTest.addEventListener("mouseout", function () {
         cursor.classList.remove("custom-cursor--video");
@@ -114,6 +156,28 @@ export default function Home() {
         cursorPlay.classList.add("opacity-0");
       });
     }
+
+    function toTrailer() {
+      SetHeroOption("trailer");
+      cursor.classList.remove("vid-loading");
+    }
+
+    heroSection.addEventListener("mouseover", function () {
+      if (previewVid !== null) {
+        previewVid.addEventListener("click", function () {
+          SetHeroOption("blank");
+          cursor.classList.add("vid-loading");
+          let heroVidTl = gsap.timeline({ onComplete: toTrailer });
+          heroVidTl.delay(1);
+          heroVidTl.add;
+        });
+      }
+      if (trailerVid !== null) {
+        trailerVid.addEventListener("click", function () {
+          SetHeroOption("preview");
+        });
+      }
+    });
 
     window.addEventListener("mousemove", function (e) {
       let mouseX = e.clientX;
@@ -146,9 +210,14 @@ export default function Home() {
         <section
           data-scroll
           data-scroll-speed="-8"
-          className="w-screen h-screen bg-white overflow-hidden relative flex flex-row items-center justify-center meow-hero"
+          className="w-screen h-screen bg-black overflow-hidden relative flex flex-row items-center justify-center meow-hero"
         >
           <HeroSectionVideoChanger />
+          {/* <div className="absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] z-[1]">
+            <div className="relative w-[100px] h-[100px]">
+              <Image src="/static/images/buffer.gif" layout="fill" />
+            </div>
+          </div> */}
         </section>
         <section
           data-scroll
@@ -171,9 +240,7 @@ export default function Home() {
           <Image src="/static/images/logomark.svg" layout="fill" />
         </div>
         <div className="cursor-play opacity-0 text-black flex flex-row items-center justify-center h-full w-full">
-          <svg viewBox="6 2 12 13.5" className="PlayIcon ml-[1px]">
-            <path d="M16.25 8.625L7.10317 2.52183V14.7282L16.25 8.625Z"></path>
-          </svg>
+          <CursorVideoChanger />
         </div>
       </div>
     </div>

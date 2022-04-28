@@ -61,6 +61,7 @@ a {
 
 * {
   box-sizing: border-box;
+  user-select: none;
 }
 
 .custom-cursor {
@@ -75,6 +76,12 @@ a {
   transition: transform 350ms;
   transform: translate(-50%, -50%) scale(0.8);
   z-index: 1000;
+}
+
+.custom-cursor--video.vid-loading {
+  background-color: transparent !important;
+  border-width: 0.5px;
+  border-color: #ffffff80;
 }
 
 .custom-cursor--link {
@@ -94,6 +101,12 @@ a {
   height: 12%;
   width: 12%;
   stroke-width: 0px;
+}
+
+.XIcon {
+  height: 50%;
+  width: 50%;
+  transform: scale(0.3);
 }
 
 /*! locomotive-scroll v3.5.4 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
