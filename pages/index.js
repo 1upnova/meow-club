@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { motion } from "framer-motion";
+import AnimatedText from "../components/AnimatedText";
 gsap.registerPlugin(ScrollTrigger);
 
 const fadeIn = {
@@ -23,6 +24,22 @@ const fadeIn = {
 export default function Home() {
   const [heroOption, SetHeroOption] = useState("preview");
 
+  const placeholderText = [
+    { type: "heading1", text: "The Walls." },
+    {
+      type: "heading2",
+      text: "In the metaverse.",
+    },
+  ];
+
+  const container = {
+    visible: {
+      transition: {
+        staggerChildren: 0.025,
+      },
+    },
+  };
+
   const HeroSectionVideoChanger = () => {
     switch (heroOption) {
       case "preview":
@@ -33,7 +50,7 @@ export default function Home() {
             </span>
             <video
               src="/static/videos/preview.mp4"
-              className="min-h-full max-w-none preview-vid"
+              className="w-full preview-vid"
               muted
               playsInline
               autoPlay
@@ -43,14 +60,17 @@ export default function Home() {
         );
       case "trailer":
         return (
-          <motion.video
-            initial="initial"
-            whileInView="inView"
-            variants={fadeIn}
-            src="/static/videos/TrailerSourceFixed.mp4"
-            className="min-h-full max-w-none z-[2] trailer-vid"
-            autoPlay
-          ></motion.video>
+          <div className="w-full h-full">
+            <motion.video
+              initial="initial"
+              whileInView="inView"
+              variants={fadeIn}
+              src="/static/videos/TrailerSourceFixed.mp4"
+              className=" z-[2] trailer-vid"
+              autoPlay
+              controls
+            ></motion.video>
+          </div>
         );
       case "blank":
         return;
@@ -121,6 +141,7 @@ export default function Home() {
           : "fixed",
       });
     }); //End of Loco
+
     var cursor = document.querySelector(".custom-cursor");
     var cursorSVG = document.querySelector(".cursor-svg");
     var cursorPlay = document.querySelector(".cursor-play");
@@ -207,11 +228,7 @@ export default function Home() {
       </Head>
       <Header />
       <main data-scroll-container>
-        <section
-          data-scroll
-          data-scroll-speed="-8"
-          className="w-screen h-screen bg-black overflow-hidden relative flex flex-row items-center justify-center meow-hero"
-        >
+        <section className="aspect-[1920/800] w-screen h-auto bg-black overflow-hidden relative flex flex-row items-center justify-center meow-hero">
           <HeroSectionVideoChanger />
           {/* <div className="absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] z-[1]">
             <div className="relative w-[100px] h-[100px]">
@@ -219,11 +236,20 @@ export default function Home() {
             </div>
           </div> */}
         </section>
-        <section
-          data-scroll
-          data-scroll-speed="0"
-          className="w-screen h-fit bg-white overflow-hidden flex flex-col p-16 items-center"
-        >
+        <section className="w-screen h-screen hero-section flex flex-row items-center justify-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={container}
+            className="font-DMSans text-9xl flex flex-col items-center justify-center"
+          >
+            {placeholderText.map((item, index) => {
+              return <AnimatedText {...item} key={index} />;
+            })}
+          </motion.div>
+        </section>
+        <section className="w-screen h-fit overflow-hidden flex flex-col p-16 items-center">
           <div className="w-full h-[50vh] rounded-2xl overflow-hidden relative flex flex-row items-center justify-end ">
             <div className="w-[40%] z-[3] pr-32">
               <span className="font-DMSans font-bold text-white text-4xl">
