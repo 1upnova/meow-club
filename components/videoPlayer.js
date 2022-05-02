@@ -163,12 +163,10 @@ export default function VideoPlayer(props) {
         }
       }
     });
-
-    return;
   }, [props.autoplay, videoTime]);
 
   return (
-    <div className="custom-video-player relative w-full h-full">
+    <div className="custom-video-player relative w-full h-full overflow-hidden">
       <video
         id="videoPlayer"
         ref={videoRef}

@@ -1,11 +1,12 @@
 import Head from "next/head";
 import Header from "../components/header";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { motion } from "framer-motion";
 import AnimatedText from "../components/AnimatedText";
-import VideoPlayer from "../components/videoPlayer";
+import HeroVidChanger from "../components/heroVideoChanger";
+import CursorChanger from "../components/CursorChanger";
 
 const fadeIn = {
   initial: {
@@ -22,7 +23,6 @@ const fadeIn = {
 
 export default function Home() {
   const [heroOption, SetHeroOption] = useState("preview");
-  const [isMobile, setIsMobile] = useState(false);
 
   const placeholderText = [
     { type: "heading1", text: "The Walls." },
@@ -40,112 +40,22 @@ export default function Home() {
     },
   };
 
-  const HeroSectionVideoChanger = () => {
-    switch (heroOption) {
-      case "preview":
-        return (
-          <div className="w-full h-full z-[2]">
-            <span className="font-DMSans text-8xl text-center xl:text-[12rem] mix-blend-difference absolute text-white top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] pointer-events-none">
-              Play trailer
-            </span>
-            <video
-              src="/static/videos/preview.mp4"
-              className="h-full max-w-none preview-vid"
-              muted
-              playsInline
-              autoPlay
-              loop
-            ></video>
-          </div>
-        );
-      case "trailer":
-        if (isMobile) {
-          return (
-            <motion.div
-              initial="hidden"
-              whileInView="inView"
-              variants={fadeIn}
-              className="w-full h-full"
-            >
-              <video
-                autoPlay
-                disablePictureInPicture
-                controlsList="nodownload noremoteplayback noplaybackrate"
-                playsInline
-                controls
-                className="h-full max-w-none"
-                src="/static/videos/TrailerSourceFixed.mp4"
-              ></video>
-            </motion.div>
-          );
-        } else {
-          return (
-            <motion.div
-              initial="hidden"
-              whileInView="inView"
-              variants={fadeIn}
-              className="w-full h-full"
-            >
-              <VideoPlayer
-                autoplay={true}
-                classes="trailer-vid"
-                src="/static/videos/TrailerSourceFixed.mp4"
-              />
-            </motion.div>
-          );
-        }
-
-      case "blank":
-        return;
-    }
-  };
-
-  const CursorVideoChanger = () => {
-    switch (heroOption) {
-      case "preview":
-        return (
-          <svg viewBox="6 2 12 13.5" className="PlayIcon ml-[1px]">
-            <path d="M16.25 8.625L7.10317 2.52183V14.7282L16.25 8.625Z"></path>
-          </svg>
-        );
-      case "trailer":
-        return (
-          <svg
-            className="XIcon"
-            xmlns="http://www.w3.org/2000/svg"
-            fillRule="evenodd"
-            clipRule="evenodd"
-          >
-            <path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z" />
-          </svg>
-        );
-      case "blank":
-        return (
-          <span className="text-white font-DMSans text-[25%]">Loading</span>
-        );
-    }
-  };
-
   useEffect(() => {
-    if (window.innerWidth <= 768) setIsMobile(true);
-    window.addEventListener("resize", () => {
-      if (window.innerWidth <= 768) setIsMobile(true);
-    });
-    var locoScroll;
-    import("locomotive-scroll").then((locomotiveModule) => {
-      locoScroll = new locomotiveModule.default({
-        el: document.querySelector("[data-scroll-container]"),
-        smooth: true,
-        smoothMobile: false,
-        smartphone: {
-          smooth: false,
-        },
-        reloadOnContextChange: true,
-        direction: "vertical",
-        speed: "1",
-        getDirection: true,
-      });
-    }); //End of Loco
+    // var locoScroll;
+    // import("locomotive-scroll").then((locomotiveModule) => {
+    //   locoScroll = new locomotiveModule.default({
+    //     el: document.querySelector("[data-scroll-container]"),
+    //     smooth: true,
+    //     smoothMobile: false,
+    //     smartphone: {
+    //       smooth: false,
+    //     },
+    //     reloadOnContextChange: false,
+    //     direction: "vertical",
+    //     speed: "1",
+    //     getDirection: true,
+    //   });
+    // }); //End of Loco
 
     var cursor = document.querySelector(".custom-cursor");
     var cursorSVG = document.querySelector(".cursor-svg");
@@ -223,8 +133,14 @@ export default function Home() {
       cursor.style.top = mouseY + "px";
     });
 
-    return function cleanup() {
-      if (locoScroll !== undefined) locoScroll.destroy();
+    return () => {
+      // if (locoScroll) {
+      //   locoScroll.destroy();
+      //   locoScroll = null;
+      //   document.querySelectorAll(".c-scrollbar").forEach((el) => {
+      //     el.remove();
+      //   });
+      // }
     };
   });
 
@@ -238,7 +154,7 @@ export default function Home() {
       <Header />
       <main data-scroll-container>
         <section className="w-screen h-screen bg-black overflow-hidden relative flex flex-row items-center justify-center meow-hero">
-          <HeroSectionVideoChanger />
+          <HeroVidChanger option={heroOption} />
         </section>
         <section className="w-screen h-screen hero-section flex flex-row items-center justify-center">
           <motion.div
@@ -333,7 +249,7 @@ export default function Home() {
           <Image src="/static/images/logomark.svg" layout="fill" />
         </div>
         <div className="cursor-play opacity-0 text-black flex flex-row items-center justify-center h-full w-full">
-          <CursorVideoChanger />
+          <CursorChanger option={heroOption} />
         </div>
       </div>
     </div>

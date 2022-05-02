@@ -47,6 +47,10 @@
 
 /* Controls */
 
+.no-overflow {
+  overflow: hidden !important;
+}
+
 .controlsContainer {
   display: flex;
   flex-direction: column;
@@ -56,6 +60,7 @@
   width: 95vw;
   background-color: transparent;
   z-index: 9999;
+  transition: transform 500ms ease;
 }
 
 .controls {
@@ -110,6 +115,10 @@
   color: white;
 }
 
+.controls-hidden {
+  transform: translateY(100%);
+}
+
 html,
 body {
   padding: 0;
@@ -121,6 +130,7 @@ body {
 
 body {
   background-color: white;
+  overflow-x: hidden;
 }
 
 a {
@@ -186,9 +196,21 @@ a {
   width: 50%;
   transform: scale(0.3);
 }
+body::-webkit-scrollbar-track {
+  @apply bg-white;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  @apply bg-[#b6b6b6];
+}
 
 /*! locomotive-scroll v3.5.4 | MIT License | https:github.com/locomotivemtl/locomotive-scroll */
-html.has-scroll-smooth {
+/* html.has-scroll-smooth {
   overflow: hidden !important;
   position: fixed;
   left: 0;
@@ -246,4 +268,4 @@ html.has-scroll-dragging {
 .has-scroll-dragging .c-scrollbar_thumb {
   cursor: -webkit-grabbing;
   cursor: grabbing;
-}
+} */
