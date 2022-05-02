@@ -3,10 +3,9 @@ import Header from "../components/header";
 import { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { motion } from "framer-motion";
 import AnimatedText from "../components/AnimatedText";
-gsap.registerPlugin(ScrollTrigger);
+import VideoPlayer from "../components/videoPlayer";
 
 const fadeIn = {
   initial: {
@@ -23,6 +22,7 @@ const fadeIn = {
 
 export default function Home() {
   const [heroOption, SetHeroOption] = useState("preview");
+  const [isMobile, setIsMobile] = useState(false);
 
   const placeholderText = [
     { type: "heading1", text: "The Walls." },
@@ -50,7 +50,7 @@ export default function Home() {
             </span>
             <video
               src="/static/videos/preview.mp4"
-              className="w-full preview-vid"
+              className="h-full max-w-none preview-vid"
               muted
               playsInline
               autoPlay
@@ -59,19 +59,31 @@ export default function Home() {
           </div>
         );
       case "trailer":
-        return (
-          <div className="w-full h-full">
-            <motion.video
-              initial="initial"
-              whileInView="inView"
-              variants={fadeIn}
-              src="/static/videos/TrailerSourceFixed.mp4"
-              className=" z-[2] trailer-vid"
-              autoPlay
-              controls
-            ></motion.video>
-          </div>
-        );
+        if (isMobile) {
+          return (
+            <motion.div className="w-full h-full">
+              <video
+                autoPlay
+                disablePictureInPicture
+                controlsList="nodownload noremoteplayback noplaybackrate"
+                playsInline
+                className="h-full max-w-none trailer-vid"
+                src="/static/videos/TrailerSourceFixed.mp4"
+              ></video>
+            </motion.div>
+          );
+        } else {
+          return (
+            <motion.div className="w-full h-full">
+              <VideoPlayer
+                autoplay={true}
+                classes="trailer-vid"
+                src="/static/videos/TrailerSourceFixed.mp4"
+              />
+            </motion.div>
+          );
+        }
+
       case "blank":
         return;
     }
@@ -104,6 +116,10 @@ export default function Home() {
   };
 
   useEffect(() => {
+    if (window.innerWidth <= 768) setIsMobile(true);
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 768) setIsMobile(true);
+    });
     var locoScroll;
     import("locomotive-scroll").then((locomotiveModule) => {
       locoScroll = new locomotiveModule.default({
@@ -117,28 +133,6 @@ export default function Home() {
         direction: "vertical",
         speed: "1",
         getDirection: true,
-      });
-      locoScroll.on("scroll", ScrollTrigger.update);
-
-      ScrollTrigger.scrollerProxy("[data-scroll-container]", {
-        scrollTop(value) {
-          return arguments.length
-            ? locoScroll.scrollTo(value, 0, 0)
-            : locoScroll.scroll.instance.scroll.y;
-        }, // we don't have to define a scrollLeft because we're only scrolling vertically.
-        getBoundingClientRect() {
-          return {
-            top: 0,
-            left: 0,
-            width: window.innerWidth,
-            height: window.innerHeight,
-          };
-        },
-        // LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
-        pinType: document.querySelector("[data-scroll-container]").style
-          .transform
-          ? "transform"
-          : "fixed",
       });
     }); //End of Loco
 
@@ -217,6 +211,10 @@ export default function Home() {
       cursor.style.left = mouseX + "px";
       cursor.style.top = mouseY + "px";
     });
+
+    return function cleanup() {
+      if (locoScroll !== undefined) locoScroll.destroy();
+    };
   });
 
   return (
@@ -228,13 +226,8 @@ export default function Home() {
       </Head>
       <Header />
       <main data-scroll-container>
-        <section className="aspect-[1920/800] w-screen h-auto bg-black overflow-hidden relative flex flex-row items-center justify-center meow-hero">
+        <section className="w-screen h-screen bg-black overflow-hidden relative flex flex-row items-center justify-center meow-hero">
           <HeroSectionVideoChanger />
-          {/* <div className="absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] z-[1]">
-            <div className="relative w-[100px] h-[100px]">
-              <Image src="/static/images/buffer.gif" layout="fill" />
-            </div>
-          </div> */}
         </section>
         <section className="w-screen h-screen hero-section flex flex-row items-center justify-center">
           <motion.div
