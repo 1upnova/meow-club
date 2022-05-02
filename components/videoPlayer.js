@@ -95,9 +95,14 @@ export default function VideoPlayer(props) {
     let videoPlayerDOM = document.querySelector("#videoPlayer");
     setVideoTime(videoPlayerDOM.duration);
     if (props.autoplay == true) {
-      const timer = setTimeout(() => {
-        videoHandler("play");
-      }, 200);
+      videoPlayerDOM.addEventListener("loadeddata", (e) => {
+        if (videoPlayerDOM.readyState >= 3) {
+          videoHandler("play");
+        }
+      });
+      // const interval = setInterval(() => {
+      //   videoHandler("play");
+      // }, 100);
     }
     videoPlayerDOM.addEventListener("timeupdate", (event) => {
       setCurrentTime(videoPlayerDOM.currentTime);
@@ -150,7 +155,6 @@ export default function VideoPlayer(props) {
     });
 
     fullscreenBtn.addEventListener("click", function toggleFullScreen() {
-      console.log("Clicked");
       if (!document.fullscreenElement && document.fullscreenEnabled) {
         videoPlayerDOM.requestFullscreen();
       } else {
@@ -180,15 +184,15 @@ export default function VideoPlayer(props) {
               className="time_progressBar bg-white"
             ></div>
           </div>
-          <div className="pointer-events-auto cursor-pointer h-[20px] relative ml-4">
+          <div className="pointer-events-auto cursor-pointer h-[18px] w-[18px] relative xl:ml-4">
             <Image
               className="invert"
               src="/static/images/audio.png"
-              height={20}
-              width={20}
+              height={90}
+              width={90}
             />
           </div>
-          <div className="h-[5px] w-[100px] bg-[#161516] overflow-hidden pointer-events-auto relative">
+          <div className="h-[5px] w-[80px] xl:w-[100px] bg-[#161516] overflow-hidden pointer-events-auto relative">
             <div
               style={{ width: `${soundPercent}%` }}
               className="h-[5px] bg-white rounded-md z-[2] pointer-events-none absolute inset-0"
@@ -198,7 +202,7 @@ export default function VideoPlayer(props) {
               className="h-[5px] w-full bg-white opacity-[0.15] rounded-md z-[1] cursor-pointer pointer-events-auto absolute inset-0"
             ></div>
           </div>
-          <div className="relative h-[20px] w-[20px] ml-2 lg:hidden">
+          <div className="relative h-[18px] w-[18px] xl:ml-2 lg:hidden">
             <Image
               className="invert fullscreen-btn"
               src="/static/images/fullscreen.png"

@@ -87,6 +87,7 @@
   display: flex;
   width: 100%;
   align-items: center;
+  flex-direction: row;
   /* justify-content: space-evenly; */
   gap: 0.5rem;
   background-color: #161516;
@@ -101,7 +102,7 @@
 .time_progressbarContainer {
   background-color: rgba(251, 251, 250, 0.15);
   border-radius: 15px;
-  width: 100%;
+  @apply w-1/2 xl:w-full;
   height: 8px;
   z-index: 30;
   position: relative;
