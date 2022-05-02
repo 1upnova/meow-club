@@ -61,12 +61,19 @@ export default function Home() {
       case "trailer":
         if (isMobile) {
           return (
-            <motion.div className="w-full h-full">
+            <motion.div
+              initial="hidden"
+              whileInView="inView"
+              variants={fadeIn}
+              className="w-full h-full"
+            >
               <video
                 autoPlay
                 disablePictureInPicture
                 controlsList="nodownload noremoteplayback noplaybackrate"
                 playsInline
+                mutedc
+                controls
                 className="h-full max-w-none"
                 src="/static/videos/TrailerSourceFixed.mp4"
               ></video>
