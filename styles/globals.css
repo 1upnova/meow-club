@@ -84,17 +84,9 @@
 /* The time controls section */
 
 .timecontrols {
-  display: flex;
   width: 100%;
-  align-items: center;
-  flex-direction: row;
-  /* justify-content: space-evenly; */
   gap: 0.5rem;
   background-color: #161516;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  padding-left: 1em;
-  padding-right: 1.5em;
   border-radius: 8px;
   height: fit-content;
 }

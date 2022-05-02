@@ -176,7 +176,7 @@ export default function VideoPlayer(props) {
         src={props.src}
       ></video>
       <div className="controlsContainer pointer-events-auto left-[50%] translate-x-[-50%] bottom-0 pb-2 xl:pb-12">
-        <div className="timecontrols">
+        <div className="timecontrols flex flex-row items-center py-1 px-4">
           <PlayBtnBottom />
           <div className="time_progressbarContainer pointer-events-auto">
             <div
