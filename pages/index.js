@@ -67,14 +67,19 @@ export default function Home() {
                 disablePictureInPicture
                 controlsList="nodownload noremoteplayback noplaybackrate"
                 playsInline
-                className="h-full max-w-none trailer-vid"
+                className="h-full max-w-none"
                 src="/static/videos/TrailerSourceFixed.mp4"
               ></video>
             </motion.div>
           );
         } else {
           return (
-            <motion.div className="w-full h-full">
+            <motion.div
+              initial="hidden"
+              whileInView="inView"
+              variants={fadeIn}
+              className="w-full h-full"
+            >
               <VideoPlayer
                 autoplay={true}
                 classes="trailer-vid"
@@ -125,9 +130,9 @@ export default function Home() {
       locoScroll = new locomotiveModule.default({
         el: document.querySelector("[data-scroll-container]"),
         smooth: true,
-        smoothMobile: true,
+        smoothMobile: false,
         smartphone: {
-          smooth: true,
+          smooth: false,
         },
         reloadOnContextChange: true,
         direction: "vertical",
