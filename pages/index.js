@@ -72,7 +72,6 @@ export default function Home() {
                 disablePictureInPicture
                 controlsList="nodownload noremoteplayback noplaybackrate"
                 playsInline
-                mutedc
                 controls
                 className="h-full max-w-none"
                 src="/static/videos/TrailerSourceFixed.mp4"
