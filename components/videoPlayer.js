@@ -97,7 +97,7 @@ export default function VideoPlayer(props) {
     if (props.autoplay == true) {
       const timer = setTimeout(() => {
         videoHandler("play");
-      }, 100);
+      }, 200);
     }
     videoPlayerDOM.addEventListener("timeupdate", (event) => {
       setCurrentTime(videoPlayerDOM.currentTime);
@@ -106,6 +106,7 @@ export default function VideoPlayer(props) {
 
     let progressBar = document.querySelector(".time_progressbarContainer");
     let soundBar = document.getElementById("sound-bar");
+    let fullscreenBtn = document.querySelector(".fullscreen-btn");
 
     var isMouseDownSound = false;
     var isMouseDownProgress = false;
@@ -148,6 +149,17 @@ export default function VideoPlayer(props) {
       }
     });
 
+    fullscreenBtn.addEventListener("click", function toggleFullScreen() {
+      console.log("Clicked");
+      if (!document.fullscreenElement && document.fullscreenEnabled) {
+        videoPlayerDOM.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    });
+
     return;
   }, [props.autoplay, videoTime]);
 
@@ -185,6 +197,14 @@ export default function VideoPlayer(props) {
               id="sound-bar"
               className="h-[5px] w-full bg-white opacity-[0.15] rounded-md z-[1] cursor-pointer pointer-events-auto absolute inset-0"
             ></div>
+          </div>
+          <div className="relative h-[20px] w-[20px] ml-2 lg:hidden">
+            <Image
+              className="invert fullscreen-btn"
+              src="/static/images/fullscreen.png"
+              width={90}
+              height={90}
+            />
           </div>
           {/* <p className="controlsTime font-DMSans text-sm">
             {Math.floor(currentTime / 60) +

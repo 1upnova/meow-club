@@ -59,42 +59,42 @@ export default function Home() {
           </div>
         );
       case "trailer":
-        if (isMobile) {
-          return (
-            <motion.div
-              initial="hidden"
-              whileInView="inView"
-              variants={fadeIn}
-              className="w-full h-full"
-            >
-              <video
-                autoPlay
-                disablePictureInPicture
-                controlsList="nodownload noremoteplayback noplaybackrate"
-                playsInline
-                mutedc
-                controls
-                className="h-full max-w-none"
-                src="/static/videos/TrailerSourceFixed.mp4"
-              ></video>
-            </motion.div>
-          );
-        } else {
-          return (
-            <motion.div
-              initial="hidden"
-              whileInView="inView"
-              variants={fadeIn}
-              className="w-full h-full"
-            >
-              <VideoPlayer
-                autoplay={true}
-                classes="trailer-vid"
-                src="/static/videos/TrailerSourceFixed.mp4"
-              />
-            </motion.div>
-          );
-        }
+        // if (isMobile) {
+        //   return (
+        //     <motion.div
+        //       initial="hidden"
+        //       whileInView="inView"
+        //       variants={fadeIn}
+        //       className="w-full h-full"
+        //     >
+        //       <video
+        //         autoPlay
+        //         disablePictureInPicture
+        //         controlsList="nodownload noremoteplayback noplaybackrate"
+        //         playsInline
+        //         mutedc
+        //         controls
+        //         className="h-full max-w-none"
+        //         src="/static/videos/TrailerSourceFixed.mp4"
+        //       ></video>
+        //     </motion.div>
+        //   );
+        // } else {
+        return (
+          <motion.div
+            initial="hidden"
+            whileInView="inView"
+            variants={fadeIn}
+            className="w-full h-full"
+          >
+            <VideoPlayer
+              autoplay={true}
+              classes="trailer-vid"
+              src="/static/videos/TrailerSourceFixed.mp4"
+            />
+          </motion.div>
+        );
+      // }
 
       case "blank":
         return;
