@@ -68,7 +68,7 @@ export default function HeroVidChanger(props) {
             initial="hidden"
             whileInView="inView"
             variants={fadeIn}
-            className="w-full h-full"
+            className="w-full h-full trailer-vid"
           >
             <VideoPlayer
               autoplay={true}

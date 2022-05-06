@@ -61,10 +61,10 @@ export default function Home() {
     var cursorSVG = document.querySelector(".cursor-svg");
     var cursorPlay = document.querySelector(".cursor-play");
     var links = document.querySelectorAll("a");
-    var test = document.querySelectorAll("video");
+    var test = document.querySelectorAll(".preview-vid");
     var heroSection = document.querySelector(".meow-hero");
-    var trailerVid = document.querySelector(".trailer-vid");
     var previewVid = document.querySelector(".preview-vid");
+    var trailerVid = document.querySelector(".trailer-vid");
     var initCursor = false;
 
     for (var i = 0; i < links.length; i++) {
@@ -96,6 +96,9 @@ export default function Home() {
     function toTrailer() {
       SetHeroOption("trailer");
       cursor.classList.remove("vid-loading");
+      cursor.classList.remove("custom-cursor--video");
+      cursorSVG.classList.remove("hidden");
+      cursorPlay.classList.add("opacity-0");
     }
 
     heroSection.addEventListener("mouseover", function () {
@@ -106,11 +109,6 @@ export default function Home() {
           let heroVidTl = gsap.timeline({ onComplete: toTrailer });
           heroVidTl.delay(1);
           heroVidTl.add;
-        });
-      }
-      if (trailerVid !== null) {
-        trailerVid.addEventListener("click", function () {
-          SetHeroOption("preview");
         });
       }
     });

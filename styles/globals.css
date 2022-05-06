@@ -168,7 +168,7 @@ a {
 }
 
 .custom-cursor--video {
-  transform: translate(-50%, -50%) scale(3);
+  transform: translate(-50%, -50%) scale(2.5);
   background-color: white;
   mix-blend-mode: normal;
 }
