@@ -58,7 +58,7 @@ export default function HeroVidChanger(props) {
               playsInline
               controls
               className="h-full max-w-none"
-              src="/static/videos/TrailerSourceFixed.mp4"
+              src="/static/videos/trailer.mp4"
             ></video>
           </motion.div>
         );
@@ -73,7 +73,7 @@ export default function HeroVidChanger(props) {
             <VideoPlayer
               autoplay={true}
               classes="trailer-vid"
-              src="/static/videos/TrailerSourceFixed.mp4"
+              src="/static/videos/trailer.mp4"
             />
           </motion.div>
         );

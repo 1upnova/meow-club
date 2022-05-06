@@ -166,11 +166,11 @@ export default function VideoPlayer(props) {
   }, [props.autoplay, videoTime]);
 
   return (
-    <div className="custom-video-player relative w-full h-full overflow-hidden">
+    <div className="custom-video-player relative w-full h-full overflow-hidden flex flex-row justify-center">
       <video
         id="videoPlayer"
         ref={videoRef}
-        className={`video h-full max-w-none ${props.classes}`}
+        className={`video w-full max-w-none ${props.classes}`}
         src={props.src}
       ></video>
       <div className="controlsContainer pointer-events-auto left-[50%] translate-x-[-50%] bottom-0 pb-2 xl:pb-12">
