@@ -191,6 +191,23 @@ a {
   stroke-width: 0px;
 }
 
+.slider-overlay-grad {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 10%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.hero-slide.active {
+  display: block !important;
+}
+
+.hero-slide {
+  position: relative;
+}
+
 .XIcon {
   height: 50%;
   width: 50%;

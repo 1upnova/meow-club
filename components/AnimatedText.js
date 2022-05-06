@@ -50,7 +50,7 @@ const AnimatedCharacters = (props) => {
   const Tag = tagMap[props.type];
 
   return (
-    <Tag className="h-[150px] overflow-hidden">
+    <Tag className="h-[50px] lg:h-[100px] xl:h-[150px] overflow-hidden">
       {words.map((word, index) => {
         return (
           // Wrap each word in the Wrapper component
