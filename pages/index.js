@@ -151,7 +151,7 @@ export default function Home() {
       </Head>
       <Header />
       <main data-scroll-container>
-        <section className="w-screen h-screen bg-black overflow-hidden relative flex flex-row items-center justify-center meow-hero">
+        <section className="w-screen h-[40vh] lg:h-screen bg-black overflow-hidden relative flex flex-row items-center justify-center meow-hero">
           <HeroVidChanger option={heroOption} />
         </section>
         <section className="w-screen h-screen hero-section flex flex-row items-center justify-center">

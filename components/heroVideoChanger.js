@@ -28,8 +28,8 @@ export default function HeroVidChanger(props) {
   switch (props.option) {
     case "preview":
       return (
-        <div className="w-full h-full z-[2]">
-          <span className="font-DMSans text-8xl text-center xl:text-[12rem] mix-blend-difference absolute text-white top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] pointer-events-none">
+        <div className="w-full h-[40vh] lg:h-screen z-[2]">
+          <span className="font-DMSans text-6xl text-center xl:text-[12rem] mix-blend-difference absolute text-white top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] pointer-events-none">
             Play trailer
           </span>
           <video
@@ -49,7 +49,7 @@ export default function HeroVidChanger(props) {
             initial="hidden"
             whileInView="inView"
             variants={fadeIn}
-            className="w-full h-full"
+            className="w-full h-full flex items-center"
           >
             <video
               autoPlay
@@ -57,7 +57,7 @@ export default function HeroVidChanger(props) {
               controlsList="nodownload noremoteplayback noplaybackrate"
               playsInline
               controls
-              className="h-full max-w-none"
+              className="w-full"
               src="/static/videos/trailer.mp4"
             ></video>
           </motion.div>
