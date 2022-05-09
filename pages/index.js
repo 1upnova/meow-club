@@ -256,7 +256,8 @@ export default function Home() {
                 <Image
                   className="overflow-hidden"
                   src="/static/images/Render1.png"
-                  layout="fill"
+                  width={1920 * 1.35}
+                  height={1080 * 1.35}
                 />
               </div>
             </motion.div>
@@ -289,7 +290,8 @@ export default function Home() {
                 <Image
                   className="overflow-hidden"
                   src="/static/images/Render2.png"
-                  layout="fill"
+                  width={1920 * 1.35}
+                  height={1080 * 1.35}
                 />
               </div>
             </motion.div>
@@ -322,7 +324,8 @@ export default function Home() {
                 <Image
                   className="overflow-hidden"
                   src="/static/images/Render3.png"
-                  layout="fill"
+                  width={1920 * 1.35}
+                  height={1080 * 1.35}
                 />
               </div>
             </motion.div>
@@ -355,7 +358,8 @@ export default function Home() {
                 <Image
                   className="overflow-hidden"
                   src="/static/images/Render4.png"
-                  layout="fill"
+                  width={1920 * 1.35}
+                  height={1080 * 1.35}
                 />
               </div>
             </motion.div>
