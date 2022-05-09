@@ -254,6 +254,7 @@ export default function Home() {
             >
               <div className="relative overflow-hidden min-h-full w-auto aspect-[1920/1080] max-h-none min-w-full h-auto">
                 <Image
+                  priority={true}
                   className="overflow-hidden"
                   src="/static/images/Render1.png"
                   width={1920 * 1.35}
@@ -288,6 +289,7 @@ export default function Home() {
             >
               <div className="relative overflow-hidden min-h-full w-auto aspect-[1920/1080] max-h-none min-w-full h-auto">
                 <Image
+                  priority={true}
                   className="overflow-hidden"
                   src="/static/images/Render2.png"
                   width={1920 * 1.35}
@@ -322,6 +324,7 @@ export default function Home() {
             >
               <div className="relative overflow-hidden min-h-full w-auto aspect-[1920/1080] max-h-none min-w-full h-auto">
                 <Image
+                  priority={true}
                   className="overflow-hidden"
                   src="/static/images/Render3.png"
                   width={1920 * 1.35}
@@ -356,6 +359,7 @@ export default function Home() {
             >
               <div className="relative overflow-hidden min-h-full w-auto aspect-[1920/1080] max-h-none min-w-full h-auto">
                 <Image
+                  priority={true}
                   className="overflow-hidden"
                   src="/static/images/Render4.png"
                   width={1920 * 1.35}
