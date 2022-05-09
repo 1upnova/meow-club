@@ -188,7 +188,7 @@ export default function Home() {
       currslider.classList.add("active");
       // }
 
-      currentSlide = (currentSlide + 1) % 4;
+      currentSlide = (currentSlide + 1) % 5;
     }, 4000);
 
     return () => {
