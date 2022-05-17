@@ -449,10 +449,9 @@ export default function Home() {
             })}
           </motion.div>
         </section>
-        <section className="w-screen h-screen relative px-64">
-          <div className="">
+        <section className="w-screen h-screen relative">
+          <div className="relative w-full h-full overflow-hidden">
             <Image
-              className="rounded-2xl"
               src="/static/images/Render5.png"
               width={1920 * 1.4}
               height={1080 * 1.4}
