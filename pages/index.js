@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import AnimatedText from "../components/AnimatedText";
 import HeroVidChanger from "../components/heroVideoChanger";
 import CursorChanger from "../components/CursorChanger";
+import AnimatedWords from "../components/AnimatedWords";
 
 const fadeInUp = {
   initial: {
@@ -71,6 +72,13 @@ export default function Home() {
     },
   ];
 
+  const secondText = [
+    {
+      type: "heading2",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed orci dapibus, sollicitudin quam blandit, congue urna. Cras efficitur libero leo.",
+    },
+  ];
+
   const container = {
     visible: {
       transition: {
@@ -98,6 +106,7 @@ export default function Home() {
 
     var cursor = document.querySelector(".custom-cursor");
     var cursorSVG = document.querySelector(".cursor-svg");
+    var cursorArrow = document.querySelector(".cursor-arrow");
     var cursorPlay = document.querySelector(".cursor-play");
     var links = document.querySelectorAll("a");
     var test = document.querySelectorAll(".preview-vid");
@@ -105,6 +114,56 @@ export default function Home() {
     var previewVid = document.querySelector(".preview-vid");
     var trailerVid = document.querySelector(".trailer-vid");
     var initCursor = false;
+    var sliderLeft = document.querySelector(".slider-left-side");
+    var sliderRight = document.querySelector(".slider-right-side");
+    var sliderSection = document.querySelector(".slider-section");
+
+    let currentSlide = 0;
+    const numOfSlides = 4;
+    let sliders = document.querySelectorAll(".hero-slide");
+    let currslider;
+    sliderLeft.addEventListener("click", function () {
+      if (currentSlide == 0) currentSlide = 3;
+      else currentSlide = (currentSlide - 1) % numOfSlides;
+      currslider = document.querySelector(`.slide-${currentSlide}`);
+      sliders.forEach((slider) => {
+        slider.classList.remove("active");
+      });
+      currslider.classList.add("active");
+    });
+    sliderRight.addEventListener("click", function () {
+      currentSlide = (currentSlide + 1) % numOfSlides;
+      currslider = document.querySelector(`.slide-${currentSlide}`);
+      sliders.forEach((slider) => {
+        slider.classList.remove("active");
+      });
+      currslider.classList.add("active");
+    });
+
+    sliderLeft.addEventListener("mouseenter", function () {
+      cursorArrow.classList.remove("hidden");
+      cursorArrow.classList.remove("cursor-arrow-right");
+      cursorArrow.classList.add("cursor-arrow-left");
+      cursor.classList.add("custom-cursor--slider");
+      cursorSVG.classList.add("hidden");
+      cursorArrow.classList.remove("opacity-0");
+    });
+    sliderRight.addEventListener("mouseenter", function () {
+      cursorArrow.classList.remove("hidden");
+      cursorArrow.classList.remove("cursor-arrow-left");
+      cursorArrow.classList.add("cursor-arrow-right");
+      cursor.classList.add("custom-cursor--slider");
+      cursorSVG.classList.add("hidden");
+      cursorArrow.classList.remove("opacity-0");
+    });
+    sliderSection.addEventListener("mouseleave", function () {
+      cursorArrow.classList.remove("cursor-arrow-left");
+      cursorArrow.classList.remove("cursor-arrow-right");
+      cursor.classList.remove("custom-cursor--slider");
+      cursorSVG.classList.remove("hidden");
+      cursorArrow.classList.add("opacity-0");
+      cursorArrow.classList.add("hidden");
+    });
 
     for (var i = 0; i < links.length; i++) {
       var selfLink = links[i];
@@ -170,26 +229,26 @@ export default function Home() {
       cursor.style.top = mouseY + "px";
     });
 
-    let currentSlide = 1;
-    let sliderInterval = setInterval(function () {
-      if (currentSlide == 0) currentSlide = 1;
-      // let btns = document.querySelectorAll(".circleBtn");
-      // let currBtn = document.querySelector(`.circleBtn${currentSlide}`);
-      let sliders = document.querySelectorAll(".hero-slide");
-      let currslider = document.querySelector(`.slide-${currentSlide}`);
-      // if (!currBtn.classList.contains("active")) {
-      // btns.forEach((btn) => {
-      //   btn.classList.remove("active");
-      // });
-      // currBtn.classList.add("active");
-      sliders.forEach((slider) => {
-        slider.classList.remove("active");
-      });
-      currslider.classList.add("active");
-      // }
+    // let currentSlide = 1;
+    // let sliderInterval = setInterval(function () {
+    //   if (currentSlide == 0) currentSlide = 1;
+    //   // let btns = document.querySelectorAll(".circleBtn");
+    //   // let currBtn = document.querySelector(`.circleBtn${currentSlide}`);
+    //   let sliders = document.querySelectorAll(".hero-slide");
+    //   let currslider = document.querySelector(`.slide-${currentSlide}`);
+    //   // if (!currBtn.classList.contains("active")) {
+    //   // btns.forEach((btn) => {
+    //   //   btn.classList.remove("active");
+    //   // });
+    //   // currBtn.classList.add("active");
+    //   sliders.forEach((slider) => {
+    //     slider.classList.remove("active");
+    //   });
+    //   currslider.classList.add("active");
+    //   // }
 
-      currentSlide = (currentSlide + 1) % 5;
-    }, 4000);
+    //   currentSlide = (currentSlide + 1) % 5;
+    // }, 4000);
 
     return () => {
       // if (locoScroll) {
@@ -227,8 +286,10 @@ export default function Home() {
             })}
           </motion.div>
         </section>
-        <section className="w-screen h-fit overflow-hidden flex flex-col items-center">
-          <div className="hero-slide overflow-hidden slide-1 hidden active h-full w-full">
+        <section className="w-screen h-fit overflow-hidden flex flex-col items-center relative slider-section">
+          <div className="absolute left-0 h-full w-1/2  z-50 slider-left-side"></div>
+          <div className="absolute right-0 h-full w-1/2 z-50 slider-right-side"></div>
+          <div className="hero-slide overflow-hidden slide-0 hidden active h-full w-full">
             <motion.span
               initial="initial"
               whileInView="inView"
@@ -263,7 +324,7 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-          <div className="hero-slide overflow-hidden slide-2 hidden h-full w-full">
+          <div className="hero-slide overflow-hidden slide-1 hidden h-full w-full">
             <motion.span
               initial="initial"
               whileInView="inView"
@@ -298,7 +359,7 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-          <div className="hero-slide overflow-hidden slide-3 hidden h-full w-full">
+          <div className="hero-slide overflow-hidden slide-2 hidden h-full w-full">
             <motion.span
               initial="initial"
               whileInView="inView"
@@ -333,7 +394,7 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-          <div className="hero-slide overflow-hidden slide-4 hidden h-full w-full">
+          <div className="hero-slide overflow-hidden slide-3 hidden h-full w-full">
             <motion.span
               initial="initial"
               whileInView="inView"
@@ -369,8 +430,54 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
+        <section className="w-screen h-[50vh] xl:h-screen hero-section flex flex-row items-center justify-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={container}
+            className="font-DMSans text-3xl lg:text-6xl xl:text-7xl flex flex-col items-center justify-center w-2/3"
+          >
+            {secondText.map((item, index) => {
+              return (
+                <AnimatedWords
+                  hClasses="lg:h-[4.1rem] xl:h-[5rem]"
+                  {...item}
+                  key={index}
+                />
+              );
+            })}
+          </motion.div>
+        </section>
+        <section className="w-screen h-screen relative px-64">
+          <div className="">
+            <Image
+              className="rounded-2xl"
+              src="/static/images/Render5.png"
+              width={1920 * 1.4}
+              height={1080 * 1.4}
+            />
+          </div>
+        </section>
       </main>
       <div className="custom-cursor hidden lg:block">
+        <div className="cursor-arrow opacity-0 p-[1.2rem]">
+          <svg
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 12 12"
+          >
+            <path
+              d="M11.232 5.232L5.476 10.99l.767.768L12 6l-.768-.768z"
+              fill="#000"
+            />
+            <path
+              d="M6.242.243l-.767.768 5.758 5.758L12 6 6.242.243z"
+              fill="#000"
+            />
+            <path d="M.543 5.458v1.086H11.4V5.458H.543z" fill="#000" />
+          </svg>
+        </div>
         <div className="relative w-full h-full cursor-svg">
           <Image src="/static/images/logomark.svg" layout="fill" />
         </div>

@@ -133,6 +133,10 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -173,6 +177,12 @@ a {
   mix-blend-mode: normal;
 }
 
+.custom-cursor--slider {
+  transform: translate(-50%, -50%) scale(2.5);
+  background-color: white;
+  mix-blend-mode: normal;
+}
+
 .PauseIcon,
 .PlayIcon {
   color: inherit;
@@ -206,6 +216,18 @@ a {
 
 .hero-slide {
   position: relative;
+}
+
+.cursor-arrow {
+  transition: transform 350ms ease;
+}
+
+.cursor-arrow-left {
+  transform: rotate(180deg);
+}
+
+.cursor-arrow-right {
+  transform: rotate(0deg);
 }
 
 .XIcon {
