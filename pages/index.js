@@ -83,10 +83,10 @@ export default function Home() {
   const mainRef = useRef(null);
 
   const placeholderText = [
-    { type: "heading1", text: "The Walls." },
+    { type: "heading1", text: "A Metaverse World" },
     {
       type: "heading2",
-      text: "In the metaverse.",
+      text: "by 1UP Nova",
     },
   ];
 
