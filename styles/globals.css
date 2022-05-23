@@ -119,13 +119,29 @@
   transform: translateY(100%);
 }
 
+.serv-card-collapseable {
+  transition: max-height 450ms ease;
+}
+
+.expanded .serv-card-collapseable {
+  max-height: 90vh;
+}
+
+.card-arrow-svg {
+  transition: transform 350ms ease;
+}
+
+.expanded .card-arrow-svg {
+  transform: rotate(-89.9999deg);
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  @apply cursor-auto xl:cursor-none;
+  @apply cursor-auto lg:cursor-none;
 }
 
 body {

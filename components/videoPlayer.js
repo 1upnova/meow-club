@@ -8,6 +8,7 @@ export default function VideoPlayer(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [progress, setProgress] = useState(0);
   const [soundPercent, setSoundPercent] = useState(100);
+  const [lastSoundPercent, setLastSoundPercent] = useState(100);
 
   const videoHandler = (control) => {
     if (control === "play") {
@@ -19,45 +20,6 @@ export default function VideoPlayer(props) {
       videoRef.current.pause();
       setPlaying(false);
     }
-  };
-
-  const fastForward = () => {
-    videoRef.current.currentTime += 5;
-  };
-
-  const revert = () => {
-    videoRef.current.currentTime -= 5;
-  };
-
-  const PlayBtn = () => {
-    if (playing == true)
-      return (
-        <div
-          onClick={() => videoHandler("pause")}
-          className="controlsIcon--small text-white pointer-events-auto"
-        >
-          <svg
-            width="12"
-            height="13"
-            viewBox="0 0 12 13"
-            className="cursor-pointer PauseIconVideoPlayer"
-          >
-            <path d="M0.443359 12.6221V0.622311L4.29929 0.622311V12.6221H0.443359Z"></path>
-            <path d="M7.64109 12.6218V0.62207L11.497 0.62207V12.6218H7.64109Z"></path>
-          </svg>
-        </div>
-      );
-    else
-      return (
-        <div
-          onClick={() => videoHandler("play")}
-          className="controlsIcon--small text-white pointer-events-auto"
-        >
-          <svg viewBox="6 2 12 13.5" className="PlayIconVideoPlayer ml-[1px]">
-            <path d="M16.25 8.625L7.10317 2.52183V14.7282L16.25 8.625Z"></path>
-          </svg>
-        </div>
-      );
   };
 
   const PlayBtnBottom = () => {
@@ -165,6 +127,18 @@ export default function VideoPlayer(props) {
     });
   }, [props.autoplay, videoTime]);
 
+  function ToggleMute() {
+    let videoPlayerDOM = document.querySelector("#videoPlayer");
+    if (soundPercent != 0) {
+      setLastSoundPercent(soundPercent);
+      videoPlayerDOM.volume = 0;
+      setSoundPercent(0);
+    } else {
+      videoPlayerDOM.volume = lastSoundPercent / 100;
+      setSoundPercent(lastSoundPercent);
+    }
+  }
+
   return (
     <div className="custom-video-player relative w-full h-full overflow-hidden flex flex-row justify-center">
       <video
@@ -182,7 +156,10 @@ export default function VideoPlayer(props) {
               className="time_progressBar bg-white"
             ></div>
           </div>
-          <div className="pointer-events-auto cursor-pointer h-[18px] w-[18px] relative xl:ml-4">
+          <div
+            onClick={ToggleMute}
+            className="pointer-events-auto cursor-pointer h-[18px] w-[18px] relative xl:ml-4"
+          >
             <Image
               className="invert"
               src="/static/images/audio.png"
