@@ -161,8 +161,7 @@ export default function SliderSection() {
               </div>
               <div className="flex flex-col gap-16 pb-12">
                 <p className="font-DMSans text-xl text-black dark:text-white">
-                  We bring your special moments to life exactly how you imagined
-                  them.
+                  The wind blows slow and smooth until it doesn&apos;t.
                 </p>
               </div>
             </div>
@@ -214,8 +213,7 @@ export default function SliderSection() {
               </div>
               <div className="flex flex-col gap-16 pb-12">
                 <p className="font-DMSans text-xl text-black dark:text-white">
-                  We bring your special moments to life exactly how you imagined
-                  them.
+                  Water becomes whatever the mind wills it.
                 </p>
               </div>
             </div>
@@ -267,8 +265,7 @@ export default function SliderSection() {
               </div>
               <div className="flex flex-col gap-16 pb-12">
                 <p className="font-DMSans text-xl text-black dark:text-white">
-                  We bring your special moments to life exactly how you imagined
-                  them.
+                  Solid earth provides the materials for conquest.
                 </p>
               </div>
             </div>
@@ -320,8 +317,7 @@ export default function SliderSection() {
               </div>
               <div className="flex flex-col gap-16 pb-12">
                 <p className="font-DMSans text-xl text-black dark:text-white">
-                  We bring your special moments to life exactly how you imagined
-                  them.
+                  The unrelenting nature of fire can never be vanquished.
                 </p>
               </div>
             </div>
@@ -346,12 +342,11 @@ export default function SliderSection() {
             className="font-DMSans text-white absolute left-16 bottom-16 xl:left-24 xl:bottom-24 z-[2] text-xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl tracking-normal flex flex-col items-start"
           >
             <motion.span variants={fadeInUp}>
-              We bring your special moments
+              The wind blows slow and
             </motion.span>
             <motion.span variants={fadeInUp}>
-              to life exactly how you
+              smooth until it doesn&apos;t.
             </motion.span>
-            <motion.span variants={fadeInUp}>imagined them.</motion.span>
           </motion.span>
           <div className="absolute inset-0 w-full h-full slider-overlay-grad z-[1] opacity-[0.5]"></div>
           <motion.div
@@ -381,12 +376,9 @@ export default function SliderSection() {
             className="font-DMSans text-white absolute left-16 bottom-16 xl:left-24 xl:bottom-24 z-[2] text-xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl tracking-normal flex flex-col items-start"
           >
             <motion.span variants={fadeInUp}>
-              We bring your special moments
+              Water becomes whatever
             </motion.span>
-            <motion.span variants={fadeInUp}>
-              to life exactly how you
-            </motion.span>
-            <motion.span variants={fadeInUp}>imagined them.</motion.span>
+            <motion.span variants={fadeInUp}>the mind wills it.</motion.span>
           </motion.span>
           <div className="absolute inset-0 w-full h-full slider-overlay-grad z-[1] opacity-[0.5]"></div>
           <motion.div
@@ -416,12 +408,11 @@ export default function SliderSection() {
             className="font-DMSans text-white absolute left-16 bottom-16 xl:left-24 xl:bottom-24 z-[2] text-xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl tracking-normal flex flex-col items-start"
           >
             <motion.span variants={fadeInUp}>
-              We bring your special moments
+              Solid earth provides the
             </motion.span>
             <motion.span variants={fadeInUp}>
-              to life exactly how you
+              materials for conquest.
             </motion.span>
-            <motion.span variants={fadeInUp}>imagined them.</motion.span>
           </motion.span>
           <div className="absolute inset-0 w-full h-full slider-overlay-grad z-[1] opacity-[0.5]"></div>
           <motion.div
@@ -451,12 +442,11 @@ export default function SliderSection() {
             className="font-DMSans text-white absolute left-16 bottom-16 xl:left-24 xl:bottom-24 z-[2] text-xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl tracking-normal flex flex-col items-start"
           >
             <motion.span variants={fadeInUp}>
-              We bring your special moments
+              The unrelenting nature of fire
             </motion.span>
             <motion.span variants={fadeInUp}>
-              to life exactly how you
+              can never be vanquished.
             </motion.span>
-            <motion.span variants={fadeInUp}>imagined them.</motion.span>
           </motion.span>
           <div className="absolute inset-0 w-full h-full slider-overlay-grad z-[1] opacity-[0.5]"></div>
           <motion.div

@@ -144,6 +144,10 @@ body {
   @apply cursor-auto lg:cursor-none;
 }
 
+.translate-x-imp {
+  transform: translateX(-50%) !important;
+}
+
 body {
   background-color: white;
   overflow-x: hidden;

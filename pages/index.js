@@ -108,7 +108,7 @@ export default function Home() {
     var cursor = document.querySelector(".custom-cursor");
     var cursorSVG = document.querySelector(".cursor-svg");
     var cursorPlay = document.querySelector(".cursor-play");
-    var links = document.querySelectorAll("a");
+    var links = document.querySelectorAll("a, .clickable");
     var test = document.querySelectorAll(".preview-vid");
     var heroSection = document.querySelector(".meow-hero");
     var previewVid = document.querySelector(".preview-vid");
@@ -245,11 +245,43 @@ export default function Home() {
             className="font-DMSans text-xl lg:text-3xl xl:text-6xl flex flex-col items-center justify-center px-6 lg:w-2/3"
           >
             {secondText.map((item, index) => {
-              return <AnimatedWords hClasses="" {...item} key={index} />;
+              return (
+                <AnimatedWords
+                  hClasses="lg:h-[2.2rem] xl:h-[4.1rem]"
+                  {...item}
+                  key={index}
+                />
+              );
             })}
           </motion.div>
         </section>
         <section className="w-screen h-auto aspect-[1920/1080] relative">
+          <motion.span
+            initial="initial"
+            whileInView="inView"
+            variants={fadeInUp}
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="aspect-[1/1] w-[80px] hidden lg:block clickable h-auto absolute bottom-16 left-[50%] translate-x-imp z-50 border-[2px] border-white rounded-full p-6"
+          >
+            <svg
+              className="rotate-[-90deg] invert"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 12 12"
+            >
+              <path
+                d="M11.232 5.232L5.476 10.99l.767.768L12 6l-.768-.768z"
+                fill="#000"
+              />
+              <path
+                d="M6.242.243l-.767.768 5.758 5.758L12 6 6.242.243z"
+                fill="#000"
+              />
+              <path d="M.543 5.458v1.086H11.4V5.458H.543z" fill="#000" />
+            </svg>
+          </motion.span>
           <div className="relative max-w-none h-full overflow-hidden">
             <Image
               priority={true}
