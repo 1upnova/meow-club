@@ -251,7 +251,11 @@ export default function Home() {
         </section>
         <section className="w-screen h-auto aspect-[1920/1080] relative">
           <div className="relative max-w-none h-full overflow-hidden">
-            <Image src="/static/images/Render5.png" layout="fill" />
+            <Image
+              priority={true}
+              src="/static/images/Render5.png"
+              layout="fill"
+            />
           </div>
         </section>
       </main>
