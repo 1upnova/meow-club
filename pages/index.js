@@ -27,6 +27,23 @@ const fadeInUp = {
   },
 };
 
+const fadeInUpScrollBtn = {
+  initial: {
+    y: 20,
+    x: "-50%",
+    opacity: 0,
+  },
+  inView: {
+    y: 0,
+    x: "-50%",
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
 const stagger = {
   inView: {
     transition: {
@@ -76,7 +93,7 @@ export default function Home() {
   const secondText = [
     {
       type: "heading2",
-      text: "Ancient legend has foretold of the Meow Club, the premiere Cool Cats metaverse experience. Choose between water, fire, wind, and air to battle for prizes and glory. Do you have the mental and physical fortitude to succeed? Find out now!",
+      text: "Ancient legend has foretold of the Meow Club, the premiere cats metaverse experience. Choose between water, fire, wind, and air to battle for prizes and glory. Do you have the mental and physical fortitude to succeed? Find out now!",
     },
   ];
 
@@ -213,9 +230,31 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Meow Club · NFTWorlds Project</title>
-        <meta name="description" content="Meow Club · NFTWorlds Project" />
+        <title>Meow Club · PvP in the Metaverse</title>
+        <meta
+          name="description"
+          content="Choose between water, fire, wind, and air to battle for prizes and glory."
+        />
         <link rel="icon" href="/favicon.png" />
+        <meta property="og:title" content="Meow Club · PvP in the Metaverse" />
+        <meta property="og:url" content="https://meowclub.net" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:description"
+          content="Choose between water, fire, wind, and air to battle for prizes and glory."
+        />
+        <meta
+          property="og:image"
+          content="https://meowclub.net/ShareThumb.png"
+        />
+        <meta property="og:image:width" content="1600" />
+        <meta property="og:image:height" content="900" />
+        <meta property="og:image:alt" content="meow club" />
+        <meta property="og:image:type" content="image/png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="theme-color" content="#91d0f3" />
+        <meta name="robots" content="index" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Header />
       <main ref={mainRef} data-scroll-container>
@@ -259,11 +298,11 @@ export default function Home() {
           <motion.span
             initial="initial"
             whileInView="inView"
-            variants={fadeInUp}
+            variants={fadeInUpScrollBtn}
             onClick={() => {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="aspect-[1/1] w-[80px] hidden lg:block clickable h-auto absolute bottom-16 left-[50%] translate-x-imp z-50 border-[2px] border-white rounded-full p-6"
+            className="aspect-[1/1] w-[80px] hidden lg:block clickable h-auto absolute bottom-16 left-[50%] z-50 border-[2px] border-white rounded-full p-6"
           >
             <svg
               className="rotate-[-90deg] invert"
